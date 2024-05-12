@@ -20,9 +20,9 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: milan
-  password: password
-  host: localhost
+  username: <%= ENV["MESSI_DATABASE_USERNAME"] %>
+  password: <%= ENV["MESSI_DATABASE_PASSWORD"] %>
+  host: <%= ENV["DATABASE_HOSTNAME"] %>
 
 development:
   <<: *default
@@ -84,6 +84,7 @@ test:
 #
 production:
   <<: *default
-  database: Messi_production
-  username: <%= ENV["MESSIDATABASE_USERNAME"] %>
+  database: <%= ENV["MESSI_DATABASE_NAME"] %>
+  username: <%= ENV["MESSI_DATABASE_USERNAME"] %>
   password: <%= ENV["MESSI_DATABASE_PASSWORD"] %>
+  host: <%= ENV["DATABASE_HOSTNAME"] %>
